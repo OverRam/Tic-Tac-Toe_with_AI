@@ -2,7 +2,7 @@ package tictactoe.Game;
 
 public class GameTicTacToe {
 
-    public void run() {
+    public void runGame() {
 
         FiledGame filedGame = new FiledGame();
         int[] coordinates = new int[2];
