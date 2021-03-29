@@ -19,4 +19,5 @@ class FiledGame {
     void setMarkOnField(int[] coordinates, char mark) {
         this.fieldToGame[coordinates[0]][coordinates[1]] = mark;
     }
+
 }
