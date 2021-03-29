@@ -49,40 +49,22 @@ public class GameTicTacToe {
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
         int slash = 0;
         int backSlash = 0;
-        int horizontal;
-        int vertical;
+
         for (int i = 0; i < 3; i++) {
-            horizontal = 0;
-            vertical = 0;
+           int horizontal = 0;
+           int vertical = 0;
+
             for (int j = 0; j < 3; j++) {
-                if (arrayToCheck[i][j] == charToCheck) {                //check horizontal
-                    horizontal++;
-                    if (horizontal == 3) {
-                        return true;
-                    }
-                }
 
-                if (arrayToCheck[j][i] == charToCheck) {                //check vertical
-                    vertical++;
-                    if (vertical == 3) {
-                        return true;
-                    }
-                }
-
-                if (i == j && arrayToCheck[j][i] == charToCheck) {       //check back slash
-                    backSlash++;
-                    if (backSlash == 3) {
-                        return true;
-                    }
-                }
-            }
-            if (arrayToCheck[i][2 - i] == charToCheck) {           //check slash
-                slash++;
-                if (slash == 3) {
+                horizontal += arrayToCheck[i][j] == charToCheck ? 1 : 0;             //check horizontal
+                vertical += arrayToCheck[j][i] == charToCheck ? 1 : 0;               //check vertical
+                if (horizontal == 3 | vertical == 3) {
                     return true;
                 }
             }
+            backSlash += arrayToCheck[i][i] == charToCheck ? 1 : 0;                    //check back slash
+            slash += arrayToCheck[i][2 - i] == charToCheck ? 1 : 0;                     //check slash
         }
-        return false;
+        return slash == 3 | backSlash == 3;
     }
 }
