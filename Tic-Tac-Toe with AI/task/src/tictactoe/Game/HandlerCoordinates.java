@@ -2,7 +2,7 @@ package tictactoe.Game;
 
 import java.util.Scanner;
 
-class InputUser {
+class HandlerCoordinates {
 
     static int[] getCoordinates() {
         Scanner sc = new Scanner(System.in);

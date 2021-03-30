@@ -8,7 +8,7 @@ public class GeneratorCell {
         int[] coordinates = new int[2];
         while (isGoodCoordinates) {
             System.out.print("Enter the coordinates: ");
-            coordinates = InputUser.getCoordinates();
+            coordinates = HandlerCoordinates.getCoordinates();
             //checks if the field provided by the user is free
             isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame, coordinates);
         }
