@@ -1,7 +1,6 @@
 package tictactoe.Game;
 
 class PrintGameField {
-
     static void print(char[][] filedGame) {
         System.out.println("---------");
         for (char[] chars : filedGame) {
