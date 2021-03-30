@@ -1,27 +1,27 @@
 package tictactoe.Game;
 
 public class GeneratorCell {
-    static int[] playerGenerateCell(FiledGame filedGame) {
+    static int[] playerGenerateCell(char[][] filedGame) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
         while (isGoodCoordinates) {
             System.out.print("Enter the coordinates: ");
             coordinates = InputUser.getCoordinates();
             //checks if the field provided by the user is free
-            isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame.getFieldToGame(), coordinates);
+            isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame, coordinates);
         }
         return coordinates;
     }
 
-    static int[] aiGenerateCell(FiledGame filedGame,String difficultLevel) {
+    static int[] aiGenerateCell(char[][] filedGame,String difficultLevel) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
+        System.out.println("Making move level " + difficultLevel);
         while (isGoodCoordinates) {
             coordinates = InputUser.getCoordinates();
             //checks if the field provided by the user is free
-            isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame.getFieldToGame(), coordinates);
+            isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame, coordinates);
         }
-        System.out.println("Making move level " + difficultLevel);
         return coordinates;
     }
 }
