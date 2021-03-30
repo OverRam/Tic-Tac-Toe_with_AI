@@ -4,29 +4,32 @@ public class GameTicTacToe {
 
     public void runGame() {
         FiledGame filedGame = new FiledGame();
-        int[] coordinates = new int[2];
         int player = 0;
         String level = "\"easy\"";
         boolean isNotEnd = true;
+        PrintGameField.print(filedGame.getFieldToGame());
 
         while (isNotEnd) {
-            PrintGameField.print(filedGame.getFieldToGame());
-
             char playerChar = setPlayerChar(player);
-            filedGame.setMark(GeneratorCell.playerGenerateCell(filedGame.getFieldToGame()),setPlayerChar(player));
+            boolean checkWin = checkWinCombination(filedGame.getFieldToGame(), playerChar);
 
-            PrintGameField.print(filedGame.getFieldToGame());
-
-            if (checkWinCombination(filedGame.getFieldToGame(), playerChar)) {
+            if (checkWin) {
                 System.out.println(playerChar + " wins");
                 isNotEnd = false;
-            } else if (player == 9) {
+            } else if (player == 8) {
                 isNotEnd = false;
                 System.out.println("Draw");
-            } else {
+            } else if (playerChar == 'X') {
+                //Player play
+                filedGame.setMark(GeneratorCell.playerGenerateCell(filedGame.getFieldToGame()), setPlayerChar(player));
+                PrintGameField.print(filedGame.getFieldToGame());
                 player++;
+            } else if (playerChar == 'O') {
                 playerChar = setPlayerChar(player);
-                filedGame.setMark(GeneratorCell.aiGenerateCell(filedGame.getFieldToGame(), level),playerChar);
+                //Ai play
+                filedGame.setMark(GeneratorCell.aiGenerateCell(filedGame.getFieldToGame(), level), playerChar);
+                PrintGameField.print(filedGame.getFieldToGame());
+                player++;
             }
 
         }
@@ -54,7 +57,7 @@ public class GameTicTacToe {
         return slash == 3 | backSlash == 3;
     }
 
-    char setPlayerChar(int player){
+    private char setPlayerChar(int player) {
         return player % 2 == 0 ? 'X' : 'O';
     }
 }
