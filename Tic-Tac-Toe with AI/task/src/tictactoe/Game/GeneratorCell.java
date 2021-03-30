@@ -1,5 +1,7 @@
 package tictactoe.Game;
 
+import java.util.Random;
+
 public class GeneratorCell {
     static int[] playerGenerateCell(char[][] filedGame) {
         boolean isGoodCoordinates = true;
@@ -16,9 +18,11 @@ public class GeneratorCell {
     static int[] aiGenerateCell(char[][] filedGame,String difficultLevel) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
+        Random random = new Random();
         System.out.println("Making move level " + difficultLevel);
         while (isGoodCoordinates) {
-            coordinates = InputUser.getCoordinates();
+            coordinates[0] = random.nextInt(3);
+            coordinates[1] = random.nextInt(3);
             //checks if the field provided by the user is free
             isGoodCoordinates = !IsGoodCellToMark.isGood(filedGame, coordinates);
         }
