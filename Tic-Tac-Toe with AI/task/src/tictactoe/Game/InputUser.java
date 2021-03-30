@@ -21,8 +21,10 @@ class InputUser {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("You should enter numbers!");
+                System.out.print("Enter the coordinates: ");
             }catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("You should enter two numbers!");
+                System.out.print("Enter the coordinates: ");
             }
         }
         return coordinate;
