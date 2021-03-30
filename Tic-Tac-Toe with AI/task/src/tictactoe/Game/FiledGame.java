@@ -16,7 +16,7 @@ class FiledGame {
         return fieldToGame;
     }
 
-    void setMarkOnField(int[] coordinates, char mark) {
+    void setMark(int[] coordinates, char mark) {
         this.fieldToGame[coordinates[0]][coordinates[1]] = mark;
     }
 
