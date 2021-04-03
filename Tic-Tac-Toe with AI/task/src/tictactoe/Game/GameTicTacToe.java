@@ -1,8 +1,26 @@
 package tictactoe.Game;
 
+import java.util.Scanner;
+
 public class GameTicTacToe {
 
-    public void runGame() {
+    public void gameMenu() {
+        System.out.println("Input command: ");
+        String[] inputParams = new String[3];
+        Scanner sc = new Scanner(System.in);
+        boolean isBadParam = true;
+
+        while (isBadParam) {
+            inputParams = sc.nextLine().split(" ");
+            isBadParam = !CheckParamsToStartProgram.checkInputParams(inputParams);
+            System.out.print(isBadParam ? "Bad parameters!\n" : "");
+        }
+
+        runGame(inputParams);
+        sc.close();
+    }
+
+    private void runGame(String[] params) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
         String level = "\"easy\"";
@@ -16,7 +34,7 @@ public class GameTicTacToe {
             if (checkWin) {
                 System.out.println(playerChar + " wins");
                 isNotEnd = false;
-            } else if (player == 8) {
+            } else if (player == 9) {
                 isNotEnd = false;
                 System.out.println("Draw");
             } else if (playerChar == 'X') {
@@ -34,6 +52,7 @@ public class GameTicTacToe {
 
         }
     }
+
 
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
         int slash = 0;
