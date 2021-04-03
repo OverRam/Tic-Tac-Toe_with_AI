@@ -24,26 +24,24 @@ public class GameTicTacToe {
         FiledGame filedGame = new FiledGame();
         int player = 0;
         boolean isNotEnd = true;
-        char playerChar;
-        boolean checkWin;
+        char playerChar = 'E';
 
         PrintGameField.print(filedGame.getFieldToGame());
         while (isNotEnd) {
             playerChar = setPlayerChar(player);
-            checkWin = checkWinCombination(filedGame.getFieldToGame(), playerChar);
 
-            if (checkWin) {
-                System.out.println(playerChar + " wins");
-                isNotEnd = false;
-            } else if (player == 9) {
+            if (player == 9) {
                 isNotEnd = false;
                 System.out.println("Draw");
             } else {
                 PlayersHandler.handler(playersParams[player % 2], filedGame, player, playerChar);
                 PrintGameField.print(filedGame.getFieldToGame());
+                isNotEnd = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
                 player++;
             }
+
         }
+        System.out.println(playerChar + " wins");
     }
 
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
