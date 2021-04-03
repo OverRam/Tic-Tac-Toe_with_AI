@@ -5,6 +5,6 @@ import tictactoe.Game.GameTicTacToe;
 public class Main {
     public static void main(String[] args) {
         GameTicTacToe gameTicTacToe = new GameTicTacToe();
-        gameTicTacToe.runGame();
+        gameTicTacToe.gameMenu();
     }
 }
