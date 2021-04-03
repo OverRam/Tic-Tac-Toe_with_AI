@@ -2,7 +2,7 @@ package tictactoe.Game;
 
 import java.util.Random;
 
-public class GeneratorCell {
+class GeneratorCell {
     static int[] playerGenerateCell(char[][] filedGame) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
