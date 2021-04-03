@@ -15,21 +15,22 @@ public class GameTicTacToe {
             isBadParam = !CheckParamsToStartProgram.checkInputParams(inputParams);
             System.out.print(isBadParam ? "Bad parameters!\n" : "");
         }
-
-        runGame(inputParams);
+        String[] playersParams = {inputParams[1], inputParams[2]};
+        runGame(playersParams);
         sc.close();
     }
 
-    private void runGame(String[] params) {
+    private void runGame(String[] playersParams) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
-        String level = "\"easy\"";
         boolean isNotEnd = true;
-        PrintGameField.print(filedGame.getFieldToGame());
+        char playerChar;
+        boolean checkWin;
 
+        PrintGameField.print(filedGame.getFieldToGame());
         while (isNotEnd) {
-            char playerChar = setPlayerChar(player);
-            boolean checkWin = checkWinCombination(filedGame.getFieldToGame(), playerChar);
+            playerChar = setPlayerChar(player);
+            checkWin = checkWinCombination(filedGame.getFieldToGame(), playerChar);
 
             if (checkWin) {
                 System.out.println(playerChar + " wins");
@@ -37,22 +38,13 @@ public class GameTicTacToe {
             } else if (player == 9) {
                 isNotEnd = false;
                 System.out.println("Draw");
-            } else if (playerChar == 'X') {
-                //Player play
-                filedGame.setMark(GeneratorCell.playerGenerateCell(filedGame.getFieldToGame()), setPlayerChar(player));
-                PrintGameField.print(filedGame.getFieldToGame());
-                player++;
-            } else if (playerChar == 'O') {
-                playerChar = setPlayerChar(player);
-                //Ai play
-                filedGame.setMark(GeneratorCell.aiGenerateCell(filedGame.getFieldToGame(), level), playerChar);
+            } else {
+                PlayersHandler.handler(playersParams[player % 2], filedGame, player, playerChar);
                 PrintGameField.print(filedGame.getFieldToGame());
                 player++;
             }
-
         }
     }
-
 
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
         int slash = 0;
