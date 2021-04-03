@@ -17,7 +17,8 @@ class PlayersHandler {
                 userPlayer();
                 break;
             case "easy":
-
+                easyAiPlayer();
+                break;
         }
     }
 
