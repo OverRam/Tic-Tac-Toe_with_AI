@@ -1,6 +1,5 @@
 package tictactoe.Game;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameTicTacToe {
@@ -43,7 +42,7 @@ public class GameTicTacToe {
 
         while (isNoWin) {
             playerChar = setPlayerChar(player);
-            PlayersHandler.handler(gamers[player % 2], filedGame, player, playerChar);
+            PlayersHandler.handler(gamers[player % 2], filedGame, playerChar);
             PrintGameField.print(filedGame.getFieldToGame());
             isNoWin = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
             player++;
