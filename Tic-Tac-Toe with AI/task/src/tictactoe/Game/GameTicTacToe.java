@@ -1,32 +1,46 @@
 package tictactoe.Game;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameTicTacToe {
 
     public void gameMenu() {
-        System.out.println("Input command: ");
-        String[] inputParams = new String[3];
-        Scanner sc = new Scanner(System.in);
-        boolean isBadParam = true;
+        final Scanner sc = new Scanner(System.in);
+        String inputParamsPlayer;
+        boolean isPlay = true;
+        boolean isGoodParam = true;
+        String[] playerParams;
 
-        while (isBadParam) {
-            inputParams = sc.nextLine().split(" ");
-            isBadParam = !CheckParamsToStartProgram.checkInputParams(inputParams);
-            System.out.print(isBadParam ? "Bad parameters!\n" : "");
+        while (isPlay) {
+            System.out.print("Input command: ");
+            inputParamsPlayer = sc.nextLine();
+            playerParams = inputParamsPlayer.split(" ");
+            if ("exit".equals(playerParams[0])) {
+                isGoodParam = false;
+                isPlay = false;
+            } else if ("start".equals(playerParams[0])) {
+                isGoodParam = CheckParamsToStartProgram.checkInputParams(playerParams);
+            }
+
+            System.out.print(isGoodParam ? "" : "exit".equals(playerParams[0]) ? "" : "Bad parameters!\n");
+
+            if (isGoodParam) {
+                runGame(new String[]{playerParams[1], playerParams[2]});
+            }
         }
-        String[] playersParams = {inputParams[1], inputParams[2]};
-        runGame(playersParams);
+
         sc.close();
     }
 
-    private void runGame(String[] playersParams) {
+
+    private void runGame(String[] gamers) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
         boolean isNotEnd = true;
         char playerChar = 'E';
-
         PrintGameField.print(filedGame.getFieldToGame());
+
         while (isNotEnd) {
             playerChar = setPlayerChar(player);
 
@@ -34,14 +48,14 @@ public class GameTicTacToe {
                 isNotEnd = false;
                 System.out.println("Draw");
             } else {
-                PlayersHandler.handler(playersParams[player % 2], filedGame, player, playerChar);
+                PlayersHandler.handler(gamers[player % 2], filedGame, player, playerChar);
                 PrintGameField.print(filedGame.getFieldToGame());
                 isNotEnd = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
                 player++;
             }
-
         }
-        System.out.println(playerChar + " wins");
+
+        System.out.println(playerChar + " wins\n");
     }
 
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
