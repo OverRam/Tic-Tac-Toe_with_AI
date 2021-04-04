@@ -10,7 +10,7 @@ class GeneratorCell {
             System.out.print("Enter the coordinates: ");
             coordinates = HandlerCoordinates.getCoordinates();
             //checks if the field provided by the user is free
-            isGoodCoordinates = IsBadCellToMark.isBadCell(filedGame, coordinates, true);
+            isGoodCoordinates = CheckCellToMark.isBadCell(filedGame, coordinates, true);
         }
         return coordinates;
     }
@@ -24,7 +24,7 @@ class GeneratorCell {
             coordinates[0] = random.nextInt(3);
             coordinates[1] = random.nextInt(3);
             //checks if the field provided by the user is free
-            isGoodCoordinates = IsBadCellToMark.isBadCell(filedGame, coordinates, false);
+            isGoodCoordinates = CheckCellToMark.isBadCell(filedGame, coordinates, false);
         }
         return coordinates;
     }

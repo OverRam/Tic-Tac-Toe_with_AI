@@ -1,6 +1,6 @@
 package tictactoe.Game;
 
-class IsBadCellToMark {
+class CheckCellToMark {
     static boolean isBadCell(char[][] filedToCheck, int[] coordinates, boolean isPlayer) {
         if (filedToCheck[coordinates[0]][coordinates[1]] == ' ') {
             return false;
