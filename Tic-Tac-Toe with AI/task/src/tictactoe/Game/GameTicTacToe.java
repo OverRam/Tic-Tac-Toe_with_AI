@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GameTicTacToe {
 
-    public void gameMenu() {
+    public void startGameMenu() {
         final Scanner sc = new Scanner(System.in);
         String inputParamsPlayer;
         boolean isPlay = true;
@@ -26,7 +26,7 @@ public class GameTicTacToe {
             System.out.print(isGoodParam ? "" : "exit".equals(playerParams[0]) ? "" : "Bad parameters!\n");
 
             if (isGoodParam) {
-                runGame(new String[]{playerParams[1], playerParams[2]});
+                Game(new String[]{playerParams[1], playerParams[2]});
             }
         }
 
@@ -34,7 +34,7 @@ public class GameTicTacToe {
     }
 
 
-    private void runGame(String[] gamers) {
+    private void Game(String[] gamers) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
         boolean isNoWin = true;

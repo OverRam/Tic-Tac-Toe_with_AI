@@ -24,7 +24,7 @@ class PlayersHandler {
     }
 
     private static void userPlayer() {
-        FIELD.setMark(GeneratorCell.playerGenerateCell(FIELD.getFieldToGame()), PLAYER_CHAR);
+        FIELD.setMark(GeneratorCell.playerSetCell(FIELD.getFieldToGame()), PLAYER_CHAR);
     }
 
     private static void easyAiPlayer() {

@@ -3,7 +3,7 @@ package tictactoe.Game;
 import java.util.Random;
 
 class GeneratorCell {
-    static int[] playerGenerateCell(char[][] filedGame) {
+    static int[] playerSetCell(char[][] filedGame) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
         while (isGoodCoordinates) {
@@ -15,11 +15,11 @@ class GeneratorCell {
         return coordinates;
     }
 
-    static int[] aiGenerateCell(char[][] filedGame,String difficultLevel) {
+    static int[] aiGenerateCell(char[][] filedGame, String difficultLevel) {
         boolean isGoodCoordinates = true;
         int[] coordinates = new int[2];
         Random random = new Random();
-        System.out.println("Making move level " + difficultLevel);
+        System.out.println("Making move level " + "\"" + difficultLevel + "\"");
         while (isGoodCoordinates) {
             coordinates[0] = random.nextInt(3);
             coordinates[1] = random.nextInt(3);
