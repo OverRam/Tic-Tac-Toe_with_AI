@@ -37,25 +37,26 @@ public class GameTicTacToe {
     private void runGame(String[] gamers) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
-        boolean isNotEnd = true;
-        char playerChar = 'E';
+        boolean isNoWin = true;
+        char playerChar;
         PrintGameField.print(filedGame.getFieldToGame());
 
-        while (isNotEnd) {
+        while (isNoWin) {
             playerChar = setPlayerChar(player);
+            PlayersHandler.handler(gamers[player % 2], filedGame, player, playerChar);
+            PrintGameField.print(filedGame.getFieldToGame());
+            isNoWin = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
+            player++;
 
-            if (player == 9) {
-                isNotEnd = false;
+            if (player <= 9 && !isNoWin) {
+                System.out.print(playerChar + " wins\n");
+                isNoWin = false;
+            } else if (player == 9) {
                 System.out.println("Draw");
-            } else {
-                PlayersHandler.handler(gamers[player % 2], filedGame, player, playerChar);
-                PrintGameField.print(filedGame.getFieldToGame());
-                isNotEnd = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
-                player++;
+                isNoWin = false;
             }
-        }
 
-        System.out.println(playerChar + " wins\n");
+        }
     }
 
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
