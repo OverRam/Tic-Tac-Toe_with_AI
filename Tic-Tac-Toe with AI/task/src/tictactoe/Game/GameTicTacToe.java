@@ -8,13 +8,14 @@ public class GameTicTacToe {
         final Scanner sc = new Scanner(System.in);
         String inputParamsPlayer;
         boolean isPlay = true;
-        boolean isGoodParam = true;
+        boolean isGoodParam = false;
         String[] playerParams;
 
         while (isPlay) {
             System.out.print("Input command: ");
             inputParamsPlayer = sc.nextLine();
             playerParams = inputParamsPlayer.split(" ");
+
             if ("exit".equals(playerParams[0])) {
                 isGoodParam = false;
                 isPlay = false;
