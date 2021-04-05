@@ -20,8 +20,10 @@ class UserAndAiHandler {
                 break;
             case "medium":
                 mediumAiPlayer();
+                break;
             case "hard":
                 hardAiPlayer();
+                break;
             default:
                 FIELD.setMark(GeneratorCell.aiGenerateCell(FIELD.getFieldToGame()), 'E');
                 break;
@@ -41,6 +43,7 @@ class UserAndAiHandler {
         if (Arrays.stream(COORDINATES).allMatch(Character::isDigit)) {
             FIELD.setMark(COORDINATES, PLAYER_CHAR);
         } else {
+            System.out.println("easy");
             easyAiPlayer();
         }
     }
@@ -57,17 +60,25 @@ class UserAndAiHandler {
         int[] coordinate = new int[2];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-
                 if (i == 0) {
                     backSlash += arrayToCheck[j][j] == charToCheck ? 1 : 0;                 //check back slash
                     slash += arrayToCheck[j][2 - j] == charToCheck ? 1 : 0;                 //check slash
                     if (backSlash == 2) {                                                   //coordinates of back slash
-                        coordinate[0] = j;
-                        coordinate[1] = j;
+                        for (int k = 0; k < 3; k++) {
+                            if (' ' == charToCheck) {
+                                coordinate[0] = k;
+                                coordinate[1] = k;
+                            }
+                        }
                         return coordinate;
                     } else if (slash == 2) {                                                //coordinates of slash
-                        coordinate[0] = j;
-                        coordinate[1] = 2 - j;
+                        for (int k = 0; k < 3; k++) {
+                            if (' ' == charToCheck) {
+                                coordinate[0] = k;
+                                coordinate[1] = 2 - k;
+                            }
+                        }
+                        return coordinate;
                     }
                 }
 
@@ -88,5 +99,4 @@ class UserAndAiHandler {
         }
         return coordinate;
     }
-
 }
