@@ -42,7 +42,7 @@ public class GameTicTacToe {
 
         while (isNoWin) {
             playerChar = setPlayerChar(player);
-            PlayersHandler.handler(gamers[player % 2], filedGame, playerChar);
+            UserAndAiHandler.handler(gamers[player % 2], filedGame, playerChar);
             PrintGameField.print(filedGame.getFieldToGame());
             isNoWin = !checkWinCombination(filedGame.getFieldToGame(), playerChar);
             player++;
