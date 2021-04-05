@@ -33,7 +33,6 @@ public class GameTicTacToe {
         sc.close();
     }
 
-
     private void Game(String[] gamers) {
         FiledGame filedGame = new FiledGame();
         int player = 0;
@@ -62,23 +61,28 @@ public class GameTicTacToe {
     private boolean checkWinCombination(char[][] arrayToCheck, char charToCheck) {
         int slash = 0;
         int backSlash = 0;
+        int horizontal = 0;
+        int vertical = 0;
 
         for (int i = 0; i < 3; i++) {
-            int horizontal = 0;
-            int vertical = 0;
-
             for (int j = 0; j < 3; j++) {
-
-                horizontal += arrayToCheck[i][j] == charToCheck ? 1 : 0;             //check horizontal
-                vertical += arrayToCheck[j][i] == charToCheck ? 1 : 0;               //check vertical
+                horizontal += arrayToCheck[i][j] == charToCheck ? 1 : 0;                             //check horizontal
+                vertical += arrayToCheck[j][i] == charToCheck ? 1 : 0;                               //check vertical
                 if (horizontal == 3 | vertical == 3) {
                     return true;
                 }
+                if (i == 0) {
+                    backSlash += arrayToCheck[j][j] == charToCheck ? 1 : 0;                         //check back slash
+                    slash += arrayToCheck[j][2 - j] == charToCheck ? 1 : 0;                         //check slash
+                    if (slash == 3 | backSlash == 3) {
+                        return true;
+                    }
+                }
             }
-            backSlash += arrayToCheck[i][i] == charToCheck ? 1 : 0;                    //check back slash
-            slash += arrayToCheck[i][2 - i] == charToCheck ? 1 : 0;                     //check slash
+            horizontal = 0;
+            vertical = 0;
         }
-        return slash == 3 | backSlash == 3;
+        return false;
     }
 
     private char setPlayerChar(int player) {
