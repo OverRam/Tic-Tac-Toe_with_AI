@@ -2,13 +2,13 @@ package tictactoe.Game;
 
 import java.util.Arrays;
 
-class PlayersHandler {
+class UserAndAiHandler {
     private static FiledGame FIELD;
     private static char PLAYER_CHAR;
 
     static void handler(String modePlayer, FiledGame field, char playerChar) {
-        PlayersHandler.FIELD = field;
-        PlayersHandler.PLAYER_CHAR = playerChar;
+        UserAndAiHandler.FIELD = field;
+        UserAndAiHandler.PLAYER_CHAR = playerChar;
         System.out.println(!modePlayer.equals("user") ? "Making move level " + "\"" + modePlayer + "\"" : "");
 
         switch (modePlayer) {
