@@ -16,20 +16,20 @@ public class GameTicTacToe {
             inputParamsPlayer = sc.nextLine();
             playerParams = inputParamsPlayer.split(" ");
 
-            if ("start".equals(playerParams[0])) {
-                isGoodParam = CheckParamsToStartProgram.checkInputParams(playerParams);
-            } else if ("exit".equals(playerParams[0]) && playerParams.length == 3) {
+            if ("exit".equals(playerParams[0])) {
+                System.out.println("exit");
                 isGoodParam = false;
                 isPlay = false;
-            } else {
-                System.out.print(isGoodParam ? "" : "exit".equals(playerParams[0]) ? "" : "Bad parameters!\n");
+            } else if ("start".equals(playerParams[0])) {
+                isGoodParam = CheckParamsToStartProgram.checkInputParams(playerParams);
             }
+
+            System.out.print(isGoodParam ? "" : "exit".equals(playerParams[0]) ? "" : "Bad parameters!\n");
 
             if (isGoodParam) {
                 startGame(new String[]{playerParams[1], playerParams[2]});
             }
         }
-
         sc.close();
     }
 
@@ -40,19 +40,17 @@ public class GameTicTacToe {
         char playerChar;
         PrintGameField.print(filedGame.getFieldToGame());
         int checkWin;
+
         while (isNoWin) {
             playerChar = player % 2 == 0 ? 'X' : 'O';
             UserAndAiHandler.handler(gamers[player % 2], filedGame, playerChar);
             PrintGameField.print(filedGame.getFieldToGame());
             checkWin = CheckWinCombination.checkCombination(filedGame.getFieldToGame(), playerChar);
-            isNoWin = checkWin == -1;
+            isNoWin = checkWin != -1;
             player++;
-
-            if (checkWin == 1) {
-                System.out.print(playerChar + " wins\n");
-                isNoWin = false;
-            } else if (checkWin == 0) {
-                System.out.println("Draw");
+            System.out.println(checkWin);
+            if (checkWin == 10 || checkWin == 0) {
+                System.out.println(checkWin == 10 ? playerChar + " wins" : "Draw");
                 isNoWin = false;
             }
         }

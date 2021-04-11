@@ -15,19 +15,19 @@ public class CheckWinCombination {
                 horizontal += arrayToCheck[i][j] == charToCheck ? 1 : 0;                             //check horizontal
                 vertical += arrayToCheck[j][i] == charToCheck ? 1 : 0;                               //check vertical
                 if (horizontal == 3 | vertical == 3) {
-                    return 1;
+                    return 10;
                 }
                 if (i == 0) {
                     backSlash += arrayToCheck[j][j] == charToCheck ? 1 : 0;                         //check back slash
                     slash += arrayToCheck[j][2 - j] == charToCheck ? 1 : 0;                         //check slash
                     if (slash == 3 | backSlash == 3) {
-                        return 1;
+                        return 10;
                     }
                 }
             }
             horizontal = 0;
             vertical = 0;
         }
-        return emptyCells == 0 ? 0 : -1;
+        return emptyCells == 0 ? 0 : -10;
     }
 }

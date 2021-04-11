@@ -6,7 +6,6 @@ class UserAndAiHandler {
 
     static void handler(String modePlayer, FiledGame fieldGame, char playerChar) {
         System.out.println(!modePlayer.equals("user") ? "Making move level " + "\"" + modePlayer + "\"" : "");
-
         switch (modePlayer) {
             case "user":
                 userPlayer(fieldGame, playerChar);
@@ -131,7 +130,7 @@ class UserAndAiHandler {
     }
 
     private static void minimax(FiledGame fieldGame, char playerChar) {
-        int[][] arrayToTest = getEmptyCells(fieldGame.getFieldToGame()).toArray(x -> new int[x][1]);
-
+//        int[][] arrayToTest = getEmptyCells(fieldGame.getFieldToGame()).toArray(x -> new int[x][1]);
+//        System.out.println(arrayToTest.length);
     }
 }
