@@ -17,7 +17,6 @@ public class GameTicTacToe {
             playerParams = inputParamsPlayer.split(" ");
 
             if ("exit".equals(playerParams[0])) {
-                System.out.println("exit");
                 isGoodParam = false;
                 isPlay = false;
             } else if ("start".equals(playerParams[0])) {
