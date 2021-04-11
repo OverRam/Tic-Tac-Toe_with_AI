@@ -1,69 +1,64 @@
 package tictactoe.Game;
 
-class UserAndAiHandler {
-    private static FiledGame FIELD;
-    private static char PLAYER_CHAR;
+import java.util.ArrayList;
 
-    static void handler(String modePlayer, FiledGame field, char playerChar) {
-        UserAndAiHandler.FIELD = field;
-        UserAndAiHandler.PLAYER_CHAR = playerChar;
+class UserAndAiHandler {
+
+    static void handler(String modePlayer, FiledGame fieldGame, char playerChar) {
         System.out.println(!modePlayer.equals("user") ? "Making move level " + "\"" + modePlayer + "\"" : "");
 
         switch (modePlayer) {
             case "user":
-                userPlayer();
+                userPlayer(fieldGame, playerChar);
                 break;
             case "easy":
-                easyAiPlayer();
+                easyAiPlayer(fieldGame, playerChar);
                 break;
             case "medium":
-                mediumAiPlayer();
+                mediumAiPlayer(fieldGame, playerChar);
                 break;
             case "hard":
-                hardAiPlayer();
+                hardAiPlayer(fieldGame, playerChar);
                 break;
             default:
-                FIELD.setMark(GeneratorCell.aiGenerateCell(FIELD.getFieldToGame()), 'E');
+                fieldGame.setMark(GeneratorCell.aiGenerateCell(fieldGame.getFieldToGame()), 'E');
                 break;
         }
     }
 
-    private static void userPlayer() {
-        FIELD.setMark(GeneratorCell.playerSetCell(FIELD.getFieldToGame()), PLAYER_CHAR);
+    private static void userPlayer(FiledGame fieldGame, char playerChar) {
+        fieldGame.setMark(GeneratorCell.playerSetCell(fieldGame.getFieldToGame()), playerChar);
     }
 
-    private static void easyAiPlayer() {
-        FIELD.setMark(GeneratorCell.aiGenerateCell(FIELD.getFieldToGame()), PLAYER_CHAR);
+    private static void easyAiPlayer(FiledGame fieldGame, char playerChar) {
+        fieldGame.setMark(GeneratorCell.aiGenerateCell(fieldGame.getFieldToGame()), playerChar);
     }
 
-    private static void mediumAiPlayer() {
-        int[] coordinatesAiToWin = aiMove(FIELD.getFieldToGame(), PLAYER_CHAR);
+    private static void mediumAiPlayer(FiledGame fieldGame, char playerChar) {
+        int[] coordinatesAiToWin = mediumAiMove(fieldGame.getFieldToGame(), playerChar);
         if (coordinatesAiToWin[0] < 9) {
             //If it already has two in a row and can win with one further move, it does so.
-            FIELD.setMark(coordinatesAiToWin, PLAYER_CHAR);
+            fieldGame.setMark(coordinatesAiToWin, playerChar);
         } else {
             //If its opponent can win with one move, it plays the move necessary to block this.
-            int[] blockOponent = aiMove(FIELD.getFieldToGame(),
-                    PLAYER_CHAR == 'X' ? 'O' : PLAYER_CHAR == 'O' ? 'X' : 'O');
+            int[] blockOponent = mediumAiMove(fieldGame.getFieldToGame(),
+                    playerChar == 'X' ? 'O' : playerChar == 'O' ? 'X' : 'O');
             if (blockOponent[0] < 9) {
-                FIELD.setMark(blockOponent, PLAYER_CHAR);
+                fieldGame.setMark(blockOponent, playerChar);
             } else {
                 //Otherwise, it makes a random move.
-                easyAiPlayer();
+                easyAiPlayer(fieldGame, playerChar);
             }
         }
     }
 
-    private static void hardAiPlayer() {
-
-    }
-
-    private static int[] aiMove(char[][] arrayToCheck, char charToCheck) {
+    private static int[] mediumAiMove(char[][] arrayToCheck, char charToCheck) {
         int slash = 0;
         int backSlash = 0;
         int horizontal = 0;
         int vertical = 0;
         int[] coordinate = {9, 9};
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (i == 0) {
@@ -115,5 +110,28 @@ class UserAndAiHandler {
             vertical = 0;
         }
         return coordinate;
+    }
+
+
+    private static void hardAiPlayer(FiledGame fieldGame, char playerChar) {
+        mediumAiPlayer(fieldGame,playerChar);
+        minimax(fieldGame, playerChar);
+    }
+
+    private static ArrayList<int[]> getEmptyCells(char[][] arrayToCheck) {
+        ArrayList<int[]> coordinatesEmptyCells = new ArrayList<>();
+        for (int i = 0; i < arrayToCheck.length; i++) {
+            for (int j = 0; j < arrayToCheck.length; j++) {
+                if (arrayToCheck[i][j] == ' ') {
+                    coordinatesEmptyCells.add(new int[]{i, j});
+                }
+            }
+        }
+        return coordinatesEmptyCells;
+    }
+
+    private static void minimax(FiledGame fieldGame, char playerChar) {
+        int[][] arrayToTest = getEmptyCells(fieldGame.getFieldToGame()).toArray(x -> new int[x][1]);
+
     }
 }
