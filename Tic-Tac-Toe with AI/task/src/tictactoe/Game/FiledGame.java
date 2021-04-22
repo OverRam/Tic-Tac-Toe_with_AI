@@ -1,23 +1,23 @@
 package tictactoe.Game;
 
 class FiledGame {
-    private final char[][] fieldToGame;
+    private final char[][] field;
 
     FiledGame() {
-        fieldToGame = new char[3][3];
-        for (int i = 0; i < fieldToGame.length; i++) {
-            for (int j = 0; j < fieldToGame.length; j++) {
-                fieldToGame[i][j] = ' ';
+        field = new char[3][3];
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field.length; j++) {
+                field[i][j] = ' ';
             }
         }
     }
 
-    char[][] getFieldToGame() {
-        return fieldToGame;
+    char[][] getField() {
+        return field;
     }
 
     void setMark(int[] coordinates, char mark) {
-        this.fieldToGame[coordinates[0]][coordinates[1]] = mark;
+        this.field[coordinates[0]][coordinates[1]] = mark;
     }
 
 }
