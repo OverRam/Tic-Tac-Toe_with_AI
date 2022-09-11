@@ -1,1 +1,1 @@
-Game Tic Tac Toe with AI
+Game Tic Tac Toe with the minmax algorithm
