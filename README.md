@@ -1,6 +1,6 @@
 Game Tic Tac Toe with the minmax algorithm
 <br>
-To start write: start user X
+To start write: start X X
 <br>
 X posible value: user, easy, medium, hard
 <br>
